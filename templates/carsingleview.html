@@ -1,0 +1,92 @@
+{% extends "managerhome.html" %}
+
+{% block content %}
+<style>
+   .itemcon{
+        width:95%;
+        margin: auto;
+        padding: 30px;
+        border: 4px solid rgb(48, 48, 79);
+
+   }
+   h4{
+    display: block !important;
+    text-align: center;
+
+   }
+   .itemcon input{
+    width: 100%;
+    padding: 5px;
+    border: none;
+   }
+</style>
+
+<div class="container">
+    {% for item in car  %}
+
+      
+    <div class="row">
+        <div class="col-md-6">
+            <div class="itemcon">
+                <h4><u>Car Details</u></h4>
+                {% for message in messages %}
+    <h4 style="color:red;text-align:center">{{message}}</h4>
+    {% endfor %}
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                <table>
+                    <tr>
+                        <th>Car Name :</th>
+                        <td><input name="carname" value="{{item.Car_Name}}"></td>
+                    </tr>
+                    <tr>
+                        <th>Car Rent Price:</th>
+                        <td><input name="rent" type="text"value="{{item.Rent}}"></td>
+                    </tr>
+                    <tr>
+                        <th>Car Brand:</th>
+                        <td><input name="brand" type="text"value="{{item.Car_Brand}}"></td>
+                    </tr>
+                    <tr>
+                        <th>Car Category:</th>
+                        <td><input name="catego" type="text"value="{{item.Car_Category}}"></td>
+                    </tr>
+                    <tr>
+                        <th>Model Year</th>
+                        <td><input type="date" name="year" value="{{item.Model_Year}}" required></td>
+                    </tr>
+                    <tr>
+                        <th> Number Plate Number:</th>
+                        <td><input name="pnum" type="text"value="{{item.Plate_Number}}"></td>
+                    </tr>
+                    <tr>
+                        <th>Kilomeaters:</th>
+                        <td><input name="klm" type="text"value="{{item.Kilomeaters}}"></td>
+                    </tr>
+                    <h6>Current Car Status: {{item.Car_Status}}</h6>
+            </table>
+
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="itemcon">
+                <h4><u>Actions</u></h4>
+
+                <img src="{{item.Car_Image.url}}" alt="" width="auto" height="100px">
+                <br><br><br>
+                Change image<input type="file" name="img" required>
+                <button type="submit" class="btn btn-warning">Update</button>
+                <a href="{%url 'ListToRent' item.id%}" class="btn btn-info">List To Rent</a>
+                <a href="{%url 'MovieToCarrage' item.id%}" class="btn btn-primary">Move To Garrage</a>
+                <a href="{%url 'DeleteCar' item.id %}" class="btn btn-danger">Delete</a>
+            </div>
+        </form>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+    
+{% endblock %}
+    

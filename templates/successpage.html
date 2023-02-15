@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+{% block content %}
+<style>
+    .container h1{
+        text-align: center;
+        color: orangered;
+    }
+</style>
+
+<div class="container text-center">
+    <h1 >Your Booking Was Confirmed</h1>
+    <br><br>
+    <h3>Your Total Amount For {{days}} days is {{amount}}</h3> <br>
+    <a href="{%url 'Index' %}"  class="btn btn-lg btn-outline-success">Go to Home</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends "index.html" %}
+
+{% block content %}
+<style>
+   .itemcon{
+        width:95%;
+        margin: auto;
+        padding: 30px;
+        border: 4px solid rgb(48, 48, 79);
+
+   }
+   h4{
+    display: block !important;
+    text-align: center;
+
+   }
+   .itemcon input{
+    width: 100%;
+    padding: 5px;
+    border: none;
+   }
+   td{
+    color:black;
+    margin-left: 10px;
+    font-weight: 300;
+   }
+</style>
+
+<div class="container">
+    {% for item in car  %}
+
+      
+    <div class="row">
+        <div class="col-md-6">
+            <div class="itemcon">
+                <h4><u>Car Details</u></h4>
+                {% for message in messages %}
+    <h4 style="color:red;text-align:center">{{message}}</h4>
+    {% endfor %}
+                
+                   
+                <table>
+                    <tr>
+                        <th>Car Name :</th>
+                        <td>{{item.Car_Name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Car Rent Price:</th>
+                        <td>₹{{item.Rent}}</td>
+                    </tr>
+                    <tr>
+                        <th>Car Brand:</th>
+                        <td>{{item.Car_Brand}}</td>
+                    </tr>
+                    <tr>
+                        <th>Car Category:</th>
+                        <td>{{item.Car_Category}}</td>
+                    </tr>
+                    <tr>
+                        <th>Model Year</th>
+                        <td>{{item.Model_Year}}</td>
+                    </tr>
+                    <tr>
+                        <th> Number Plate Number:</th>
+                        <td>{{item.Plate_Number}}</td>
+                    </tr>
+                    <tr>
+                        <th>Kilomeaters:</th>
+                        <td>{{item.Kilomeaters}}</td>
+                    </tr>
+                    
+            </table>
+
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="itemcon">
+                <h4><u>Actions</u></h4>
+<form method="post">
+    {% csrf_token %}
+                <img src="{{item.Car_Image.url}}" alt="" width="auto" height="100px">
+                <br><br><br>
+                <h6 style="text-align: center;color:orangered"><u> Book This Car With Details</u></h6><br>
+                {% for i in form %}
+                {{i.label}}:
+                {{i}} <br><br>
+                {% endfor %}
+                <button type="submit" class="btn btn-warning">Book NoW</button>
+            </div>
+        </form>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+    
+{% endblock %}
+    

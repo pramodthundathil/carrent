@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<style>
+    .py-5 input{
+        width: 50%;
+        padding: 8px;
+        border: .5px solid gray;
+    }
+</style>
+    
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="bg-banner py-5 px-4 text-center">
+            <div class="py-5">
+                <h1 class="display-5 text-uppercase text-primary mb-4">Login</h1>
+                {% for message in messages %}
+                <h4 style="color:red">{{message}}</h4>
+                {% endfor %}
+                <form method="post">
+                    {% csrf_token %}
+                <br>
+                <input type="text" name="uname" placeholder="UserName"><br><br>
+                <input type="password" name="pswd" placeholder="Password"><br><br>
+
+                <button type="submit" class="btn btn-primary mt-2 py-3 px-5" href="">Login</button>
+            </form><br>
+            Dont Have an Account Register <a href="{%url 'SignUp' %}">Here</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+    
